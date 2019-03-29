@@ -95,7 +95,6 @@ class Minesweeper {
 
 	handelReveal (spot, event) {
 		const withShift = !!event.shiftKey;
-		console.info(spot, event);
 		if (withShift && spot.state === STATES.CLEAR) {
 			this.expandSpot(spot);
 		}
@@ -138,14 +137,12 @@ class Minesweeper {
 		if (spot.state !== STATES.CLEAR) {
 			return;
 		}
-		console.info('expand ', spot);
 		const adj = this.getAdjacent(spot.x, spot.y);
 		const flagCount = adj.filter((adjSpot) => {
 			return adjSpot.state === STATES.FLAG;
 		}).length;
 		if (flagCount === spot.adjacents) {
 			adj.forEach((spot) => {
-				console.info('reveal ', spot);
 				this.revealSpot(spot);
 			});
 		}
@@ -213,7 +210,6 @@ class Minesweeper {
 
 	renderMessage() {
 		this.userMessage.innerText = '';
-		console.info(this.inPlay, this.hasWon);
 
 		if (this.inPlay) {
 			let flagCount = 0;
