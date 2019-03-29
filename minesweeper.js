@@ -1,4 +1,3 @@
-
 const STATES = {
 	HIDDEN: '-',
 	FLAG: 'F',
@@ -8,7 +7,6 @@ const STATES = {
 	WRONG: 'W',
 	MINE: 'M',
 };
-
 
 class Minesweeper {
 	constructor() {
@@ -54,7 +52,7 @@ class Minesweeper {
 		while (m > 0) {
 			const col = this.getRandomInt(this.gridWidth);
 			const row = this.getRandomInt(this.gridHeight);
-			const spot = this.getSpot(col, row)
+			const spot = this.getSpot(col, row);
 			if (!spot.isMine) {
 				spot.isMine = true;
 				this.getAdjacent(col, row).forEach((spot) => {spot.adjacents += 1;});
@@ -108,7 +106,7 @@ class Minesweeper {
 		this.render();
 	}
 
-	handelFlag(spot, event) {
+	handelFlag(spot) {
 		switch(spot.state) {
 			case STATES.HIDDEN:
 			case STATES.FLAG:
@@ -176,15 +174,13 @@ class Minesweeper {
 
 	endGame() {
 		this.inPlay = false;
-		this.grid.forEach((gridRow) => {
-			gridRow.forEach((spot) => {
-				if (spot.state === STATES.FLAG && !spot.isMine) {
-					spot.state = STATES.WRONG;
-				}
-				else if (spot.isMine) {
-					spot.state = STATES.MINE;
-				}
-			})
+		this.iterGrid(spot => {
+			if (spot.state === STATES.FLAG && !spot.isMine) {
+				spot.state = STATES.WRONG;
+			}
+			else if (spot.isMine) {
+				spot.state = STATES.MINE;
+			}
 		});
 
 		this.render();
@@ -198,8 +194,6 @@ class Minesweeper {
 				count += 1;
 			}
 		});
-
-		console.info('checkHasWon: ', count, this.spotCount, this.mineCount);
 
 		if (count === this.spotCount - this.mineCount) {
 			return true;
