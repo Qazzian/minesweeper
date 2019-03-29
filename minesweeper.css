@@ -1,0 +1,43 @@
+#grid {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.grid-row {
+    display: flex;
+}
+
+#grid span {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #888888;
+    background-color: #dddddd;
+    line-height: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#grid span:active {
+    background-color: #eeeeee;
+}
+
+#grid span.spot-clear {
+    background-color: #fbfbfb;
+}
+
+.adj-1 {color: #1416c4;}
+.adj-2 {color: #148800;}
+.adj-3 {color: #9c0005;}
+.adj-4 {color: #09194c;}
+.adj-5 {color: #621011;}
+.adj-6 {color: #125b5d;}
+.adj-7 {color: #000000;}
+.adj-8 {color: #4f4f4f;}
+
+.hit {
+    background-color: red;
+}
