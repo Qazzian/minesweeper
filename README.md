@@ -14,3 +14,7 @@ and it does have a couple of features that the original is missing such as:
  
 Of course it may mean that my version is over engineered, 
 but I'll leave that decision as an exercise for the reader.
+
+You can probably see how I've been influenced by react by how I've structured my code.
+The main class has various functions for managing state and a separate render function.
+I'm also treating each Square (or 'spot') as a separate component with it's own render function.
